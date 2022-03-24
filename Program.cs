@@ -1,12 +1,6 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
-using System.IO;
 
 namespace ExemploTela
 {
@@ -18,14 +12,12 @@ namespace ExemploTela
         [STAThread]
         static void Main()
         {
-            //Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormLogin());
         }
     }
 
-    public class Form1 : Form //Tela de Login
+    public class FormLogin : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -38,7 +30,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form1()
+        public FormLogin()
         {
             this.lblUser = new Label();
             this.lblUser.Text = "Usuário";
@@ -91,13 +83,13 @@ namespace ExemploTela
 
             if (this.txtUser.Text == "dentista" && this.txtPass.Text == "123")
             {
-                Form2 form = new Form2();
+                FormInicial form = new FormInicial();
                 form.Size = new Size(320, 300);
                 form.Show();
             }
             else
             {
-                Form3 form = new Form3();
+                FormPaciente form = new FormPaciente();
                 form.Show();
 
             }
@@ -109,7 +101,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form2 : Form //Tela Inicial - Usuário Dentista
+    public class FormInicial : Form //Usuário e Dentista
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -123,10 +115,10 @@ namespace ExemploTela
         Button btnAgendamento;
         Button btnCancel;
 
-        public Form2()
+        public FormInicial()
         {
             this.lblLogin = new Label();
-            this.lblLogin.Text = "Olá Fulano";
+            this.lblLogin.Text = "Olá .......";
             this.lblLogin.Location = new Point(117, 20);
 
             this.btnDentista = new Button();
@@ -184,32 +176,32 @@ namespace ExemploTela
         }
         private void handlePacienteClick(object sender, EventArgs e)
         {
-            Form3 menu = new Form3();
+            FormPaciente menu = new FormPaciente();
             menu.ShowDialog();
         }
         private void handleDentistaClick(object sender, EventArgs e)
         {
-            Form4 menu = new Form4();
+            FormDentista menu = new FormDentista();
             menu.ShowDialog();
         }
         private void handleProcedimentoClick(object sender, EventArgs e)
         {
-            Form11 menu = new Form11();
+            FormProcedimento menu = new FormProcedimento();
             menu.ShowDialog();
         }
         private void handleEspecialidadeClick(object sender, EventArgs e)
         {
-            Form15 menu = new Form15();
+            FormEspecialidade menu = new FormEspecialidade();
             menu.ShowDialog();
         }
         private void handleSalaClick(object sender, EventArgs e)
         {
-            Form19 menu = new Form19();
+            FormSala menu = new FormSala();
             menu.ShowDialog();
         }
          private void handleAgendamentoClick(object sender, EventArgs e)
         {
-            Form23 menu = new Form23();
+            FormAgendamento menu = new FormAgendamento();
             menu.ShowDialog();
         }
         private void handleCancelClick(object sender, EventArgs e)
@@ -218,7 +210,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form3 : Form //Paciente
+    public class FormPaciente : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -230,7 +222,7 @@ namespace ExemploTela
         Button btnUpdate;
 
         ListView listView;
-        public Form3()
+        public FormPaciente()
         {
             this.lblPaciente = new Label();
             this.lblPaciente.Text = "Paciente";
@@ -291,19 +283,19 @@ namespace ExemploTela
 
         private void handleConfirmPacienteAtualizar(object sender, EventArgs e)
         {
-            Form7 menu = new Form7();
+            FormUpdatePaciente menu = new FormUpdatePaciente();
             menu.Size = new Size(325, 550);
             menu.ShowDialog();
         }
         private void handleConfirmPacienteDeletar(object sender, EventArgs e)
         {
-            Form6 menu = new Form6();
+            FormDeletarPaciente menu = new FormDeletarPaciente();
             menu.Size = new Size(320, 228);
             menu.ShowDialog();
         }
         private void handleConfirmPacienteInserir(object sender, EventArgs e)
         {
-            Form5 menu = new Form5();
+            FormInserirPaciente menu = new FormInserirPaciente();
             menu.Size = new Size(325, 510);
             menu.ShowDialog();
         }
@@ -313,7 +305,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form4 : Form //Dentista
+    public class FormDentista : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -325,7 +317,7 @@ namespace ExemploTela
         Button btnUpdate;
 
         ListView listView;
-        public Form4()
+        public FormDentista()
         {
             this.lblDentista = new Label();
             this.lblDentista.Text = "Dentista";
@@ -338,12 +330,12 @@ namespace ExemploTela
             listView.Size = new Size(410, 100);
             listView.View = View.Details;
             ListViewItem lista1 = new ListViewItem("0");
-            lista1.SubItems.Add("Rafael");
+            lista1.SubItems.Add("Maria");
             lista1.SubItems.Add("000.000.000-00");
             lista1.SubItems.Add("4002-8922");
-            lista1.SubItems.Add("teste@gmail.com");
-            lista1.SubItems.Add("ABC-01");
-            lista1.SubItems.Add("R$900,00");
+            lista1.SubItems.Add("maria@gmail.com");
+            lista1.SubItems.Add("MAR-01");
+            lista1.SubItems.Add("R$1100,00");
             lista1.SubItems.Add("1");
             lista1.SubItems.Add("Endodontia");
             lista1.SubItems.Add("Estrutura dos dentes");
@@ -400,19 +392,19 @@ namespace ExemploTela
 
         private void handleConfirmClickDentistaAtualizar(object sender, EventArgs e)
         {
-            Form10 menu = new Form10();
+            FormAtualizarDentista menu = new FormAtualizarDentista();
             menu.Size = new Size(325, 595);
             menu.ShowDialog();
         }
         private void handleConfirmClickDentistaDeletar(object sender, EventArgs e)
         {
-            Form9 menu = new Form9();
+            FormDeletarDentista menu = new FormDeletarDentista();
             menu.Size = new Size(320, 228);
             menu.ShowDialog();
         }
         private void handleConfirmClickDentistaInserir(object sender, EventArgs e)
         {
-            Form8 menu = new Form8();
+            FormInserirDentista menu = new FormInserirDentista();
             menu.Size = new Size(325, 595);
             menu.ShowDialog();
         }
@@ -422,7 +414,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form5 : Form //Inserir Paciente
+    public class FormInserirPaciente : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -443,7 +435,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form5()
+        public FormInserirPaciente()
         {
             this.lblNome = new Label();
             this.lblNome.Text = "Nome";
@@ -545,7 +537,7 @@ namespace ExemploTela
 
     }
 
-    public class Form6 : Form //Deletar Paciente
+    public class FormDeletarPaciente : Form
     {
         Label lblId;
 
@@ -554,7 +546,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form6()
+        public FormDeletarPaciente()
         {
             this.lblId = new Label();
             this.lblId.Text = "Digite o ID:";
@@ -598,7 +590,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form7 : Form //Atualizar Paciente
+    public class FormUpdatePaciente : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -621,7 +613,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form7()
+        public FormUpdatePaciente()
         {
             this.lblNome = new Label();
             this.lblNome.Text = "Nome";
@@ -734,7 +726,7 @@ namespace ExemploTela
 
     }
 
-    public class Form8 : Form //Inserir Dentista
+    public class FormInserirDentista : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -759,7 +751,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form8()
+        public FormInserirDentista()
         {
             this.lblNome = new Label();
             this.lblNome.Text = "Nome";
@@ -875,7 +867,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form9 : Form //Deletar Dentista
+    public class FormDeletarDentista : Form
     {
         Label lblId;
 
@@ -884,7 +876,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form9()
+        public FormDeletarDentista()
         {
             this.lblId = new Label();
             this.lblId.Text = "Digite o ID:";
@@ -928,7 +920,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form10 : Form //Atualizar Dentista
+    public class FormAtualizarDentista : Form
     {
         Label lblNome;
         Label lblCpf;
@@ -951,7 +943,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form10()
+        public FormAtualizarDentista()
         {
 
             this.lblNome = new Label();
@@ -1067,7 +1059,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form11 : Form //Procedimento
+    public class FormProcedimento : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1079,7 +1071,7 @@ namespace ExemploTela
         Button btnUpdate;
 
         ListView listView;
-        public Form11()
+        public FormProcedimento()
         {
             this.lblProcedimento = new Label();
             this.lblProcedimento.Text = "Procedimento";
@@ -1092,8 +1084,8 @@ namespace ExemploTela
             listView.Size = new Size(410, 100);
             listView.View = View.Details;
             ListViewItem lista1 = new ListViewItem("0");
-            lista1.SubItems.Add("Arrancar dente");
-            lista1.SubItems.Add("R$ 50,00");
+            lista1.SubItems.Add("Extrair dente");
+            lista1.SubItems.Add("R$ 330,00");
 
             listView.Items.AddRange(new ListViewItem[] { lista1 });
             listView.Columns.Add("ID", -2, HorizontalAlignment.Left);
@@ -1140,18 +1132,18 @@ namespace ExemploTela
 
         private void handleConfirmClickProcedimentoAtualizar(object sender, EventArgs e)
         {
-            Form14 menu = new Form14();
+            FormAtualizarProcedimento menu = new FormAtualizarProcedimento();
             menu.ShowDialog();
         }
         private void handleConfirmClickProcedimentoDeletar(object sender, EventArgs e)
         {
-            Form13 menu = new Form13();
+            FormDeletarProcedimento menu = new FormDeletarProcedimento();
             menu.Size = new Size(320, 228);
             menu.ShowDialog();
         }
         private void handleConfirmClickProcedimentoInserir(object sender, EventArgs e)
         {
-            Form12 menu = new Form12();
+            FormInserirProcedimento menu = new FormInserirProcedimento();
             menu.ShowDialog();
         }
         private void handleCancelClick(object sender, EventArgs e)
@@ -1161,7 +1153,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form12 : Form //Inserir Procedimento
+    public class FormInserirProcedimento : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1174,7 +1166,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form12()
+        public FormInserirProcedimento()
         {
             this.lblDescricao = new Label();
             this.lblDescricao.Text = "Descrição";
@@ -1231,7 +1223,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form13 : Form //Deletar Procedimento
+    public class FormDeletarProcedimento : Form
     {
         Label lblId;
 
@@ -1240,7 +1232,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form13()
+        public FormDeletarProcedimento()
         {
             this.lblId = new Label();
             this.lblId.Text = "Digite o ID:";
@@ -1284,7 +1276,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form14 : Form //Atualizar Procedimento
+    public class FormAtualizarProcedimento : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1297,7 +1289,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form14()
+        public FormAtualizarProcedimento()
         {
             this.lblDescricao = new Label();
             this.lblDescricao.Text = "Descrição";
@@ -1354,7 +1346,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form15 : Form //Especialidade
+    public class FormEspecialidade : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1366,7 +1358,7 @@ namespace ExemploTela
         Button btnUpdate;
 
         ListView listView;
-        public Form15()
+        public FormEspecialidade()
         {
             this.lblEspecialidade = new Label();
             this.lblEspecialidade.Text = "Especialidade";
@@ -1423,18 +1415,18 @@ namespace ExemploTela
 
         private void handleConfirmClickEspecialidadeAtualizar(object sender, EventArgs e)
         {
-            Form18 menu = new Form18();
+            FormAtualizarEspecilidade menu = new FormAtualizarEspecilidade();
             menu.ShowDialog();
         }
         private void handleConfirmClickEspecialidadeDeletar(object sender, EventArgs e)
         {
-            Form17 menu = new Form17();
+            FormDeletarEspecialidade menu = new FormDeletarEspecialidade();
             menu.Size = new Size(320, 228);
             menu.ShowDialog();
         }
         private void handleConfirmClickEspecialidadeInserir(object sender, EventArgs e)
         {
-            Form16 menu = new Form16();
+            FormInserirEspecialidade menu = new FormInserirEspecialidade();
             menu.ShowDialog();
         }
         private void handleCancelClick(object sender, EventArgs e)
@@ -1443,7 +1435,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form16 : Form //Inserir Especialidade
+    public class FormInserirEspecialidade : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1456,7 +1448,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form16()
+        public FormInserirEspecialidade()
         {
             this.lblDescricao = new Label();
             this.lblDescricao.Text = "Descrição";
@@ -1514,7 +1506,7 @@ namespace ExemploTela
 
     }
 
-    public class Form17 : Form //Deletar Especialidade
+    public class FormDeletarEspecialidade : Form
     {
         Label lblId;
 
@@ -1523,7 +1515,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form17()
+        public FormDeletarEspecialidade()
         {
             this.lblId = new Label();
             this.lblId.Text = "Digite o ID:";
@@ -1551,7 +1543,6 @@ namespace ExemploTela
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
 
-            //this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 300);
             this.Text = "Deletar Especialidade";
@@ -1568,7 +1559,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form18 : Form // Atualizar Especialidade
+    public class FormAtualizarEspecilidade : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1581,7 +1572,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form18()
+        public FormAtualizarEspecilidade()
         {
             this.lblDescricao = new Label();
             this.lblDescricao.Text = "Descrição";
@@ -1638,7 +1629,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form19 : Form //Sala
+    public class FormSala : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1650,7 +1641,7 @@ namespace ExemploTela
         Button btnUpdate;
 
         ListView listView;
-        public Form19()
+        public FormSala()
         {
             this.lblSala = new Label();
             this.lblSala.Text = "Sala";
@@ -1663,7 +1654,7 @@ namespace ExemploTela
             listView.Size = new Size(410, 100);
             listView.View = View.Details;
             ListViewItem lista1 = new ListViewItem("1");
-            lista1.SubItems.Add("RA12");
+            lista1.SubItems.Add("01");
             lista1.SubItems.Add("Raio-X");
 
             listView.Items.AddRange(new ListViewItem[] { lista1 });
@@ -1711,18 +1702,18 @@ namespace ExemploTela
 
         private void handleConfirmClickSalaAtualizar(object sender, EventArgs e)
         {
-            Form22 menu = new Form22();
+            FormAtualizarSala menu = new FormAtualizarSala();
             menu.ShowDialog();
         }
         private void handleConfirmClickSalaDeletar(object sender, EventArgs e)
         {
-            Form21 menu = new Form21();
+            FormDeletarSala menu = new FormDeletarSala();
             menu.Size = new Size(320, 228);
             menu.ShowDialog();
         }
         private void handleConfirmClickSalaInserir(object sender, EventArgs e)
         {
-            Form20 menu = new Form20();
+            FormInserirSala menu = new FormInserirSala();
             menu.ShowDialog();
         }
         private void handleCancelClick(object sender, EventArgs e)
@@ -1731,7 +1722,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form20 : Form //Inserir Sala
+    public class FormInserirSala : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1744,7 +1735,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form20()
+        public FormInserirSala()
         {
             this.lblNumero = new Label();
             this.lblNumero.Text = "Número";
@@ -1801,7 +1792,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form21 : Form //Deletar Sala
+    public class FormDeletarSala : Form
     {
         Label lblId;
 
@@ -1810,7 +1801,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form21()
+        public FormDeletarSala()
         {
             this.lblId = new Label();
             this.lblId.Text = "Digite o ID:";
@@ -1854,7 +1845,7 @@ namespace ExemploTela
         }
     }
 
-    public class Form22 : Form //Atualizar Sala
+    public class FormAtualizarSala : Form
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -1867,7 +1858,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form22()
+        public FormAtualizarSala()
         {
             this.lblNumero = new Label();
             this.lblNumero.Text = "Número";
@@ -1925,7 +1916,7 @@ namespace ExemploTela
 
     }
 
-        public class Form23 : Form //Tela de agendamento
+        public class FormAgendamento : Form
         {
         private System.ComponentModel.IContainer components = null;
 
@@ -1938,7 +1929,7 @@ namespace ExemploTela
         Button btnUpdate;
 
         ListView listView;
-        public Form23()
+        public FormAgendamento()
         {
             this.lblAgendamento = new Label();
             this.lblAgendamento.Text = "Agendamento";
@@ -2003,19 +1994,19 @@ namespace ExemploTela
 
         private void handleConfirmAgendamentoAtualizar(object sender, EventArgs e)
         {
-            Form24 menu = new Form24();
+            FormAtualizarAgendamento menu = new FormAtualizarAgendamento();
             menu.Size = new Size(325, 510);
             menu.ShowDialog();
         }
         private void handleConfirmAgendamentoDeletar(object sender, EventArgs e)
         {
-            Form25 menu = new Form25();
+            FormAtualizarDeletar menu = new FormAtualizarDeletar();
             menu.Size = new Size(320, 228);
             menu.ShowDialog();
         }
         private void handleConfirmAgendamentoInserir(object sender, EventArgs e)
         {
-            Form26 menu = new Form26();
+            FormAtualizarInserir menu = new FormAtualizarInserir();
             menu.Size = new Size(325, 510);
             menu.ShowDialog();
         }
@@ -2026,7 +2017,7 @@ namespace ExemploTela
 
     }
 
-        public class Form24 : Form //Atualizar Agendamento
+        public class FormAtualizarAgendamento : Form
         {
         private System.ComponentModel.IContainer components = null;
 
@@ -2043,7 +2034,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form24()
+        public FormAtualizarAgendamento()
         {
             this.lblPacienteId = new Label();
             this.lblPacienteId.Text = "PacienteId";
@@ -2118,7 +2109,7 @@ namespace ExemploTela
         }
     }
 
-        public class Form25 : Form //Atualizar Deletar
+        public class FormAtualizarDeletar : Form
         {
         Label lblId;
 
@@ -2127,7 +2118,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form25()
+        public FormAtualizarDeletar()
         {
             this.lblId = new Label();
             this.lblId.Text = "Digite o ID:";
@@ -2155,7 +2146,6 @@ namespace ExemploTela
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
 
-            //this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 300);
             this.Text = "Deletar Paciente ";
@@ -2172,7 +2162,7 @@ namespace ExemploTela
         }
     }
 
-        public class Form26 : Form //Atualizar Inserir
+        public class FormAtualizarInserir : Form
         {
         private System.ComponentModel.IContainer components = null;
 
@@ -2189,7 +2179,7 @@ namespace ExemploTela
         Button btnConfirm;
         Button btnCancel;
 
-        public Form26()
+        public FormAtualizarInserir()
         {
             this.lblPacienteId = new Label();
             this.lblPacienteId.Text = "PacienteId";
